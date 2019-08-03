@@ -8,7 +8,7 @@
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 192, 256 )
 
-[sub_resource type="ConcavePolygonShape" id=13]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( 96, 0, 128, -96, 0, 128, 96, 0, -128, -96, 0, 128, -96, 0, -128, 96, 0, -128 )
 
 [sub_resource type="CubeMesh" id=3]
@@ -60,7 +60,7 @@ material/0 = null
 [node name="StaticBody" type="StaticBody" parent="Static Environment/Ground"]
 
 [node name="CollisionShape" type="CollisionShape" parent="Static Environment/Ground/StaticBody"]
-shape = SubResource( 13 )
+shape = SubResource( 2 )
 
 [node name="Building" type="MeshInstance" parent="Static Environment"]
 editor/display_folded = true
