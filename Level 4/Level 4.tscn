@@ -6,16 +6,16 @@
 data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 2, 3, 1 )
+extents = Vector3( 2, 1, 3 )
 
 [sub_resource type="CubeMesh" id=4]
-size = Vector3( 4, 6, 2 )
+size = Vector3( 4, 2, 6 )
 
 [sub_resource type="BoxShape" id=5]
-extents = Vector3( 2, 7.5, 2 )
+extents = Vector3( 2, 2, 7.5 )
 
 [sub_resource type="CubeMesh" id=6]
-size = Vector3( 4, 15, 4 )
+size = Vector3( 4, 4, 15 )
 
 [sub_resource type="CapsuleShape" id=7]
 
@@ -43,7 +43,7 @@ shape = SubResource( 2 )
 transform = Transform( -0.445192, 0, 0.895435, 0, 1, 0, -0.895435, 0, -0.445192, 14.9179, 2, -5.791 )
 
 [node name="Car" type="RigidBody" parent="."]
-transform = Transform( -4.37114e-008, -1, 4.37114e-008, 0, -4.37114e-008, -1, 1, -4.37114e-008, 1.91069e-015, -8.64408, 1.5, 3.06898 )
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -8.64408, 1.5, 3.06898 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Car"]
 shape = SubResource( 3 )
@@ -53,7 +53,7 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Bus" type="RigidBody" parent="."]
-transform = Transform( 0.993411, 0.114605, -5.00953e-009, 0, -4.37114e-008, -1, -0.114605, 0.993411, -4.34234e-008, -1.8913, 2, -10.3482 )
+transform = Transform( 0.993411, 0, 0.114608, 0, 1, 0, -0.114608, 0, 0.993411, -1.8913, 2, -10.3482 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bus"]
 shape = SubResource( 5 )
@@ -63,7 +63,7 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="Civilian" type="RigidBody" parent="."]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 8.5962, 1.5, 4.27934 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 8.5962, 1.5, 2.93815 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Civilian"]
 shape = SubResource( 7 )
