@@ -9,6 +9,7 @@ var is_paused = true
 var speed = 10
 
 func _ready():
+	add_to_group("dangerous")
 	add_to_group("trolly")
 	add_to_group("pausable")
 

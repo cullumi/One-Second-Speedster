@@ -67,6 +67,12 @@ look_down={
  ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Default"
+3d_physics/layer_2="Dangerous"
+3d_physics/layer_3="All But Player"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

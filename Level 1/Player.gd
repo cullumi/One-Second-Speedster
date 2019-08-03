@@ -4,12 +4,15 @@ export (int) var move_speed = 15
 export (int) var look_speed = 3
 
 onready var camera = $Camera
+onready var mesh = $MeshInstance
+onready var col_shape = $CollisionShape
 
 var is_paused = true
 
 func _ready():
+	add_to_group("player")
 	add_to_group("pausable")
-	$MeshInstance.visible = false
+	mesh.visible = false
 
 func _process(delta):
 	if is_paused:
@@ -68,3 +71,8 @@ func aiming(delta):
 
 func unpause():
 	is_paused = false
+	col_shape.disabled = true
+
+func add_collision_exceptions(bodies):
+	for body in bodies:
+		add_collision_exception_with(body)
