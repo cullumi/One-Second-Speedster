@@ -5,7 +5,7 @@ export (NodePath) var right_path_follow
 
 var is_paused = true
 var speed = 10
-var is_following_left_path = false
+var is_following_left_path = true
 
 func _ready():
 	add_to_group("pausable")
