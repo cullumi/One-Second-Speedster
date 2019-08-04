@@ -2,6 +2,7 @@ extends Spatial
 
 onready var real_time_cam = $"Real-Time Camera"
 onready var player = $Player
+onready var trolly = $Trolly
 
 var trolly_speed = 40
 
@@ -14,3 +15,6 @@ func _process(delta):
 		get_tree().call_group("pausable", "unpause")
 		
 		real_time_cam.current = true
+
+func _on_Track_Lever_interacted_with():
+	trolly.is_following_left_path = !trolly.is_following_left_path
