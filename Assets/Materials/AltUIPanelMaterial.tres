@@ -1,0 +1,9 @@
+[gd_resource type="CanvasItemMaterial" load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+render_priority = 1
+
+[resource]
+next_pass = SubResource( 1 )
+blend_mode = 1
+light_mode = 1

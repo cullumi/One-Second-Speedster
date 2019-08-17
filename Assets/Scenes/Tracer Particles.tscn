@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/Tracer.tres" type="CubeMesh" id=1]
+[ext_resource path="res://Assets/Scripts/Tracer Particles.gd" type="Script" id=2]
+
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.670138, 0.6034 ), -1.46351, -1.46351, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+spread = 147.77
+gravity = Vector3( 0, -1, 0 )
+initial_velocity = 1.0
+initial_velocity_random = 1.0
+scale_curve = SubResource( 2 )
+
+[node name="Particles" type="Particles"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.615764, 0, 0 )
+emitting = false
+amount = 25
+one_shot = true
+speed_scale = 3.82
+explosiveness = 0.18
+randomness = 0.5
+process_material = SubResource( 3 )
+draw_pass_1 = ExtResource( 1 )
+script = ExtResource( 2 )

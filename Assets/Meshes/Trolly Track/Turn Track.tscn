@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 0.25, 0.25, 4 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.25, 0.25, 8 )
+
+[node name="Turn Track" type="Spatial"]
+
+[node name="Bar2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.81988, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Bar" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
+material/0 = null

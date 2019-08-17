@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Scripts/Force Arrow.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Meshes/Force Arrow/Force Arrow Tail.tres" type="CylinderMesh" id=2]
+[ext_resource path="res://Assets/Meshes/Force Arrow/Force Arrow Tip.tres" type="CylinderMesh" id=3]
+
+
+[node name="Force Arrow" type="Spatial"]
+editor/display_folded = true
+script = ExtResource( 1 )
+
+[node name="Stretch Point" type="Spatial" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, 0 )
+
+[node name="Arrow Tail" type="MeshInstance" parent="Stretch Point"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0 )
+mesh = ExtResource( 2 )
+material/0 = null
+
+[node name="Arrow Tip" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, 1, 0, -1, -4.37114e-008, 0, 0, -0.25 )
+mesh = ExtResource( 3 )
+material/0 = null

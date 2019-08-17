@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Level 1/Track Lever.gd" type="Script" id=1]
+
+[sub_resource type="ConvexPolygonShape" id=1]
+points = PoolVector3Array( -0.25, 0.25, 1, 0.25, 0.25, -1, 0.25, 0.25, 1, -0.25, 0.25, -1, -0.25, -0.25, 1, 0.25, -0.25, -1, 0.25, -0.25, 1, -0.25, -0.25, -1, 0.25, 0.25, 1, -0.25, 0.25, -1, 0.25, 0.25, -1, -0.25, 0.25, 1, 0.25, -0.25, 1, -0.25, -0.25, -1, 0.25, -0.25, -1, -0.25, -0.25, 1, 0.25, 0.25, 1, -0.25, -0.25, 1, -0.25, 0.25, 1, 0.25, -0.25, 1, 0.25, 0.25, -1, -0.25, -0.25, -1, -0.25, 0.25, -1, 0.25, -0.25, -1 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 0.5, 0.5, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=3]
+points = PoolVector3Array( -0.125, 0.125, 1, 0.125, 0.125, -1, 0.125, 0.125, 1, -0.125, 0.125, -1, -0.125, -0.125, 1, 0.125, -0.125, -1, 0.125, -0.125, 1, -0.125, -0.125, -1, 0.125, 0.125, 1, -0.125, 0.125, -1, 0.125, 0.125, -1, -0.125, 0.125, 1, 0.125, -0.125, 1, -0.125, -0.125, -1, 0.125, -0.125, -1, -0.125, -0.125, 1, 0.125, 0.125, 1, -0.125, -0.125, 1, -0.125, 0.125, 1, 0.125, -0.125, 1, 0.125, 0.125, -1, -0.125, -0.125, -1, -0.125, 0.125, -1, 0.125, -0.125, -1 )
+
+[sub_resource type="CubeMesh" id=4]
+size = Vector3( 0.25, 0.25, 2 )
+
+[node name="Track Lever" type="StaticBody"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83225, 0, 0 )
+script = ExtResource( 1 )
+interaction_label = "Switch"
+
+[node name="Lever Base2" type="CollisionShape" parent="."]
+editor/display_folded = true
+shape = SubResource( 1 )
+
+[node name="Lever Base" type="MeshInstance" parent="Lever Base2"]
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Lever Handle" type="CollisionShape" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 0.956335, 0.678541 )
+shape = SubResource( 3 )
+
+[node name="Lever Handle" type="MeshInstance" parent="Lever Handle"]
+mesh = SubResource( 4 )
+material/0 = null
+
+[node name="Flipped Lever Handle" type="CollisionShape" parent="."]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 0.573576, -0.819152, 0, 0.819152, 0.573576, -0.00171947, 1.00187, -0.62051 )
+visible = false
+shape = SubResource( 3 )
+
+[node name="Lever Handle" type="MeshInstance" parent="Flipped Lever Handle"]
+mesh = SubResource( 4 )
+material/0 = null

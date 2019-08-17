@@ -1,7 +1,7 @@
 extends PathFollow
 
 var is_paused = true
-var speed = .15
+var speed = 10
 
 func _ready():
 	add_to_group("trolly")
@@ -9,11 +9,11 @@ func _ready():
 
 func _process(delta):
 	if !is_paused:
-		unit_offset += speed * delta
+		offset += speed * delta
 
 func unpause():
 	is_paused = false
 
 func set_speed(new_speed):
-	self.speed = (new_speed * 0.01) + 0.2
+	self.speed = new_speed
 	print(self.speed)
