@@ -1,0 +1,5 @@
+[gd_scene format=2]
+
+[node name="DirectionalLight" type="DirectionalLight"]
+transform = Transform( -0.278601, 0.946451, -0.163132, 0.373922, 0.263348, 0.889286, 0.884627, 0.186757, -0.427268, 0, 19.7036, 0 )
+shadow_enabled = true

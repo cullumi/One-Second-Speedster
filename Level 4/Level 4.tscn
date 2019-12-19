@@ -30,11 +30,13 @@ size = Vector3( 20, 15, 20 )
 [node name="Spatial" type="Spatial"]
 
 [node name="Ground" type="MeshInstance" parent="."]
+editor/display_folded = true
 transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Ground"]
+editor/display_folded = true
 
 [node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
 shape = SubResource( 2 )
@@ -43,6 +45,7 @@ shape = SubResource( 2 )
 transform = Transform( -0.445192, 0, 0.895435, 0, 1, 0, -0.895435, 0, -0.445192, 14.9179, 2, -5.791 )
 
 [node name="Car" type="RigidBody" parent="."]
+editor/display_folded = true
 transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -8.64408, 1.5, 3.06898 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Car"]
@@ -53,6 +56,7 @@ mesh = SubResource( 4 )
 material/0 = null
 
 [node name="Bus" type="RigidBody" parent="."]
+editor/display_folded = true
 transform = Transform( 0.993411, 0, 0.114608, 0, 1, 0, -0.114608, 0, 0.993411, -1.8913, 2, -10.3482 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bus"]
@@ -63,6 +67,7 @@ mesh = SubResource( 6 )
 material/0 = null
 
 [node name="Civilian" type="RigidBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 8.5962, 1.5, 2.93815 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Civilian"]
@@ -73,6 +78,7 @@ mesh = SubResource( 8 )
 material/0 = null
 
 [node name="Building" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 7.5, 20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building"]
@@ -83,6 +89,7 @@ mesh = SubResource( 10 )
 material/0 = null
 
 [node name="Building2" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 7.5, 20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building2"]
@@ -93,6 +100,7 @@ mesh = SubResource( 10 )
 material/0 = null
 
 [node name="Building3" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 7.5, -20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building3"]
@@ -103,6 +111,7 @@ mesh = SubResource( 10 )
 material/0 = null
 
 [node name="Building4" type="StaticBody" parent="."]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 7.5, -20 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Building4"]
@@ -111,3 +120,5 @@ shape = SubResource( 9 )
 [node name="MeshInstance" type="MeshInstance" parent="Building4"]
 mesh = SubResource( 10 )
 material/0 = null
+
+[node name="Node" type="Node" parent="."]

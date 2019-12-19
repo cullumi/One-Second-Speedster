@@ -43,4 +43,4 @@ func unpause():
 
 func set_speed(new_speed):
 	self.speed = new_speed
-	print(self.speed)
+#	print(self.speed)

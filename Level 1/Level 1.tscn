@@ -1,41 +1,42 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Level 1/Level 1.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Meshes/Detailed Building.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/Meshes/Trolly Track/Long Track.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Assets/Meshes/Trolly Track/Turn Track.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/Scenes/Innocent Rando.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Level 1/Trolly.gd" type="Script" id=7]
-[ext_resource path="res://Assets/Materials/trolly_spatmat.tres" type="Material" id=8]
-[ext_resource path="res://Assets/Meshes/Trolly/Trolly Pole.tres" type="Shape" id=9]
-[ext_resource path="res://Level 1/Track Lever.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Level 1/PathFollow.gd" type="Script" id=11]
-[ext_resource path="res://Level 1/lvl1_env.tres" type="Environment" id=12]
-[ext_resource path="res://Level 1/Real-Time Camera.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Scenes/Sun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Materials/ground_brown.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Meshes/Detailed Building.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Meshes/Trolly Track/Long Track.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Meshes/Trolly Track/Turn Track.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Scenes/Innocent Rando.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Level 1/Trolly.gd" type="Script" id=9]
+[ext_resource path="res://Assets/Materials/trolly_spatmat.tres" type="Material" id=10]
+[ext_resource path="res://Assets/Meshes/Trolly/Trolly Pole.tres" type="Shape" id=11]
+[ext_resource path="res://Level 1/Track Lever.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Scripts/PathFollowAtSpeed.gd" type="Script" id=13]
+[ext_resource path="res://Level 1/lvl1_env.tres" type="Environment" id=14]
+[ext_resource path="res://Assets/Scripts/Real-Time Camera.gd" type="Script" id=15]
 
-
-[sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.392157, 0.341176, 0.321569, 1 )
-
-[sub_resource type="PlaneMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="PlaneMesh" id=1]
+material = ExtResource( 4 )
 size = Vector2( 192, 256 )
 
-[sub_resource type="ConcavePolygonShape" id=3]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( 96, 0, 128, -96, 0, 128, 96, 0, -128, -96, 0, 128, -96, 0, -128, 96, 0, -128 )
 
-[sub_resource type="ConvexPolygonShape" id=4]
+[sub_resource type="ConvexPolygonShape" id=3]
 points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, 0.5, 4, -2, 0.5, -4, 2, 0.5, -4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, 2, 0.5, 4, -2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, 2, 0.5, -4, -2, -0.5, -4, -2, 0.5, -4, 2, -0.5, -4 )
 
-[sub_resource type="CubeMesh" id=5]
+[sub_resource type="CubeMesh" id=4]
 size = Vector3( 4, 1, 8 )
 
-[sub_resource type="ConvexPolygonShape" id=6]
+[sub_resource type="ConvexPolygonShape" id=5]
 points = PoolVector3Array( -3, 0.5, 14, 3, 0.5, -14, 3, 0.5, 14, -3, 0.5, -14, -3, -0.5, 14, 3, -0.5, -14, 3, -0.5, 14, -3, -0.5, -14, 3, 0.5, 14, -3, 0.5, -14, 3, 0.5, -14, -3, 0.5, 14, 3, -0.5, 14, -3, -0.5, -14, 3, -0.5, -14, -3, -0.5, 14, 3, 0.5, 14, -3, -0.5, 14, -3, 0.5, 14, 3, -0.5, 14, 3, 0.5, -14, -3, -0.5, -14, -3, 0.5, -14, 3, -0.5, -14 )
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=6]
 size = Vector3( 6, 1, 28 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, 0.5, 4, -2, 0.5, -4, 2, 0.5, -4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, 2, 0.5, 4, -2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, 2, 0.5, -4, -2, -0.5, -4, -2, 0.5, -4, 2, -0.5, -4 )
 
 [sub_resource type="ConvexPolygonShape" id=8]
 points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, 0.5, 4, -2, 0.5, -4, 2, 0.5, -4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, 2, 0.5, 4, -2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, 2, 0.5, -4, -2, -0.5, -4, -2, 0.5, -4, 2, -0.5, -4 )
@@ -47,18 +48,22 @@ points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -
 points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, 0.5, 4, -2, 0.5, -4, 2, 0.5, -4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, 2, 0.5, 4, -2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, 2, 0.5, -4, -2, -0.5, -4, -2, 0.5, -4, 2, -0.5, -4 )
 
 [sub_resource type="ConvexPolygonShape" id=11]
-points = PoolVector3Array( -2, 0.5, 4, 2, 0.5, -4, 2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, 0.5, 4, -2, 0.5, -4, 2, 0.5, -4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, 2, 0.5, 4, -2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, 2, 0.5, -4, -2, -0.5, -4, -2, 0.5, -4, 2, -0.5, -4 )
+points = PoolVector3Array( -2.95, 0.5, 4, 2.95, 0.5, -4, 2.95, 0.5, 4, -2.95, 0.5, -4, -2.95, -0.5, 4, 2.95, -0.5, -4, 2.95, -0.5, 4, -2.95, -0.5, -4, 2.95, 0.5, 4, -2.95, 0.5, -4, 2.95, 0.5, -4, -2.95, 0.5, 4, 2.95, -0.5, 4, -2.95, -0.5, -4, 2.95, -0.5, -4, -2.95, -0.5, 4, 2.95, 0.5, 4, -2.95, -0.5, 4, -2.95, 0.5, 4, 2.95, -0.5, 4, 2.95, 0.5, -4, -2.95, -0.5, -4, -2.95, 0.5, -4, 2.95, -0.5, -4 )
 
 [sub_resource type="CubeMesh" id=12]
+material = ExtResource( 10 )
+size = Vector3( 5.9, 1, 8 )
+
+[sub_resource type="CubeMesh" id=13]
 size = Vector3( 1, 6, 1 )
 
-[sub_resource type="Curve3D" id=13]
+[sub_resource type="Curve3D" id=14]
 _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, -0.805283, 1.3589, 18.4287, 0, 0, 0, 0, 0, 0, -0.24303, 0.456134, 2.60398, 0, 0, 0, 0, 0, 0, -1.40167, 0.717995, -27.3455, 0.47264, 0.229677, 6.10949, -0.47264, -0.229677, -6.10949, -1.08321, 0.450845, -42.968, 4.81497, 0.0445043, 4.0635, -4.81497, -0.0445043, -4.0635, -10.4467, 0.326312, -62.0262, 3.91698, -0.0875161, -0.197083, -3.91698, 0.0875161, 0.197083, -25.8894, 0.31121, -65.798, 5.34422, -0.140103, -0.377701, -5.34422, 0.140103, 0.377701, -31.6373, 0.310376, -65.5248, 4.1475, 0.079861, -3.11909, -4.1475, -0.079861, 3.11909, -41.0403, 0.205011, -62.3778, 0, 0, 0, 0, 0, 0, -44.8314, 0.308954, -52.8961 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0 )
 }
 
-[sub_resource type="Curve3D" id=14]
+[sub_resource type="Curve3D" id=15]
 _data = {
 "points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 0.415953, 0.263329, 19.518, -0.578014, -0.0166445, 2.85981, 0.578014, 0.0166445, -2.85981, -0.453586, 0.429115, 2.46197, -1.27233, 0.0312486, 1.58867, 1.27233, -0.0312486, -1.58867, 4.22364, 0.278238, -6.4688, -9.87807, -0.253149, -0.350781, 9.87807, 0.253149, 0.350781, 22.6667, 0.283567, -14.2691, -3.50067, -2.98023e-008, 0.551005, 3.50067, 2.98023e-008, -0.551005, 44.7938, 0.271431, -14.5377, -5.00385, 0, -0.713541, 5.00385, 0, 0.713541, 57.1556, 0.14982, -14.9095, -4.83079, 0.000358701, -4.42139, 4.83079, -0.000358701, 4.42139, 69.4135, 0.0604449, -10.0453, -1.43857, 0, -6.46124, 1.43857, 0, 6.46124, 77.5934, 0.146659, 2.83656, 0, 0, 0, 0, 0, 0, 76.7331, 0.204472, 13.5971 ),
 "tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0 )
@@ -70,18 +75,15 @@ script = ExtResource( 1 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.665351, 0, -0.746531, 0, 1, 0, 0.746531, 0, 0.665351, -7.24838, 1.87105, 16.3198 )
 
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.278601, 0.946451, -0.163132, 0.373922, 0.263348, 0.889286, 0.884627, 0.186757, -0.427268, 0, 19.7036, 0 )
-shadow_enabled = true
+[node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
 
 [node name="Static Environment" type="Node" parent="."]
-editor/display_folded = true
 
 [node name="Ground" type="MeshInstance" parent="Static Environment"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.538, 0, 0 )
 use_in_baked_light = true
-mesh = SubResource( 2 )
+mesh = SubResource( 1 )
 material/0 = null
 
 [node name="StaticBody" type="StaticBody" parent="Static Environment/Ground"]
@@ -89,398 +91,403 @@ editor/display_folded = true
 collision_mask = 5
 
 [node name="CollisionShape" type="CollisionShape" parent="Static Environment/Ground/StaticBody"]
-shape = SubResource( 3 )
+shape = SubResource( 2 )
 
 [node name="Buildings" type="Node" parent="Static Environment"]
 editor/display_folded = true
 
-[node name="Detailed Building" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, 24.6163, -0.291611, 5.06962 )
 
-[node name="Detailed Building2" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building2" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 2.38419e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 2.38419e-007, 19.5599, -0.291611, 23.2581 )
 
-[node name="Detailed Building3" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building3" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, 24.6163, -0.291611, 40.7897 )
 
-[node name="Detailed Building4" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building4" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, -21.2881, -0.291611, 40.1055 )
 
-[node name="Detailed Building5" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building5" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.60927e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.60927e-007, -16.0611, -0.291611, 21.3546 )
 
-[node name="Detailed Building6" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building6" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 9.53596e-008, 0, 1.5, 0, -9.53596e-008, 0, 1.5, -20.9851, -0.291611, -0.994647 )
 
-[node name="Detailed Building7" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building7" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 9.53596e-008, 0, 1.5, 0, -9.53596e-008, 0, 1.5, -20.9851, -0.291611, -11.8342 )
 
-[node name="Detailed Building8" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building8" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 9.53596e-008, 0, 1.5, 0, -9.53596e-008, 0, 1.5, -20.9851, -0.291611, -22.6528 )
 
-[node name="Detailed Building9" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building9" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 9.53596e-008, 0, 1.5, 0, -9.53596e-008, 0, 1.5, -20.9851, -0.291611, -33.3474 )
 
-[node name="Detailed Building10" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building10" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, 18.3567, -0.291611, -36.5346 )
 
-[node name="Detailed Building11" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building11" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 2.92061e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 2.92061e-007, 13.7844, -0.291611, -33.0867 )
 
-[node name="Detailed Building12" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building12" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 2.92061e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 2.92061e-007, 24.1599, -0.291611, -33.0867 )
 
-[node name="Detailed Building13" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building13" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 3.57628e-007, 0, 1.5, 0, -3.57628e-007, 0, 1.5, 38.7866, -0.291611, -31.6796 )
 
-[node name="Detailed Building14" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building14" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -4.88762e-007, 0, 1.5, 0, 4.88762e-007, 0, -1.5, 44.9004, -0.291611, -1.63184 )
 
-[node name="Detailed Building15" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building15" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 5.54329e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 5.54329e-007, 46.3823, -0.291611, 15.201 )
 
-[node name="Detailed Building16" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building16" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 5.54329e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 5.54329e-007, 40.3429, -0.291611, 36.9325 )
 
-[node name="Detailed Building17" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building17" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 5.54329e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 5.54329e-007, -35.922, -0.291611, 31.7565 )
 
-[node name="Detailed Building18" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building18" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.5, 0, 6.19896e-007, 0, 1.5, 0, -6.19896e-007, 0, 1.5, -40.8622, -0.291611, 9.15753 )
 
-[node name="Detailed Building19" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building19" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -6.85463e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -6.85463e-007, -56.0009, -0.291609, 24.5075 )
 
-[node name="Detailed Building20" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building20" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.06066, 0, 1.06066, 0, 1.5, 0, -1.06066, 0, -1.06066, -21.9426, -0.291609, -42.5877 )
 
-[node name="Detailed Building21" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building21" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, -1.06066, 7.66406, -0.291609, -75.6854 )
 
-[node name="Detailed Building22" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building22" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, -1.06066, 0.0449944, -0.291609, -83.3764 )
 
-[node name="Detailed Building23" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building23" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.5, 0, -6.55651e-007, 0, 1.5, 0, 6.55651e-007, 0, -1.5, -21.1401, -0.291609, -84.7744 )
 
-[node name="Detailed Building24" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building24" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.06066, 0, -1.06066, 0, 1.5, 0, 1.06066, 0, 1.06066, -41.9835, -0.291605, -83.9477 )
 
-[node name="Detailed Building25" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building25" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -0.388229, 0, 1.44889, 0, 1.5, 0, -1.44889, 0, -0.388229, 12.8728, -0.291609, -52.2541 )
 
-[node name="Detailed Building26" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building26" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -0.694006, 0, -1.3298, 0, 1.5, 0, 1.3298, 0, -0.694006, -56.1348, -0.291613, -75.427 )
 
-[node name="Detailed Building27" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building27" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 0.283796, 0, -1.47291, 0, 1.5, 0, 1.47291, 0, 0.283796, -60.4626, -0.291613, -57.8241 )
 
-[node name="Detailed Building28" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building28" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 0.0102314, 0, -1.49997, 0, 1.5, 0, 1.49997, 0, 0.0102314, 53.9833, -0.291613, -36.9171 )
 
-[node name="Detailed Building29" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building29" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -0.312243, 0, -1.46714, 0, 1.5, 0, 1.46714, 0, -0.312243, 66.2977, -0.291615, -35.6455 )
 
-[node name="Detailed Building30" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building30" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -0.637492, 0, -1.3578, 0, 1.5, 0, 1.3578, 0, -0.637492, 77.8676, -0.291615, -31.7265 )
 
-[node name="Detailed Building31" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building31" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 1.0545, 0, -1.06679, 0, 1.5, 0, 1.06679, 0, 1.0545, 88.6944, -0.291615, -16.6237 )
 
-[node name="Detailed Building32" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building32" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -0.182689, 0, 1.48883, 0, 1.5, 0, -1.48883, 0, -0.182689, 97.5266, -0.291615, 1.20691 )
 
-[node name="Detailed Building33" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building33" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.42576, 0, 0.466076, 0, 1.5, 0, -0.466076, 0, -1.42576, 101.736, -0.291615, 19.7503 )
 
-[node name="Detailed Building34" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building34" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.42576, 0, 0.466076, 0, 1.5, 0, -0.466076, 0, -1.42576, 22.6005, -0.291617, 54.0277 )
 
-[node name="Detailed Building35" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building35" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.28073, 0, 0.780861, 0, 1.5, 0, -0.780861, 0, -1.28073, 14.791, -0.291619, 69.1135 )
 
-[node name="Detailed Building36" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building36" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.31916, 0, -0.714011, 0, 1.5, 0, 0.714011, 0, -1.31916, -2.4844, -0.291617, 77.2644 )
 
-[node name="Detailed Building37" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building37" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.49763, 0, 0.0843803, 0, 1.5, 0, -0.0843803, 0, -1.49763, -20.9869, -0.291617, 82.3234 )
 
-[node name="Detailed Building38" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building38" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 0.556661, 0, 1.39289, 0, 1.5, 0, -1.39289, 0, 0.556661, -39.378, -0.291617, 84.2511 )
 
-[node name="Detailed Building39" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building39" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( 0.444425, 0, 1.43265, 0, 1.5, 0, -1.43265, 0, 0.444425, -47.8984, -0.291617, 81.2662 )
 
-[node name="Detailed Building40" parent="Static Environment/Buildings" instance=ExtResource( 3 )]
+[node name="Detailed Building40" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
 transform = Transform( -1.0823, 0, 1.03857, 0, 1.5, 0, -1.03857, 0, -1.0823, -60.1504, -0.291619, 66.891 )
 
 [node name="Tracks" type="Node" parent="Static Environment"]
 editor/display_folded = true
 
-[node name="Long Track" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 9.767 )
 
-[node name="Long Track12" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track12" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 1.92552 )
 
-[node name="Long Track23" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track23" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, -6.03901 )
 
-[node name="Long Track24" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track24" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, -13.9627 )
 
-[node name="Long Track25" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track25" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, -21.761 )
 
-[node name="Long Track26" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track26" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, -28.6301 )
 
-[node name="Long Track27" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track27" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, -36.4667 )
 
-[node name="Long Track28" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track28" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -3.36239, 4.76837e-007, -47.8144 )
 
-[node name="Long Track29" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track29" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -8.96026, 4.76837e-007, -57.4652 )
 
-[node name="Long Track30" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track30" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, -18.6958, 4.76837e-007, -63.0931 )
 
-[node name="Long Track31" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track31" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, 1, 0, 1, 0, -1, 0, -7.45058e-008, -29.7205, 1.43051e-006, -64.0894 )
 
-[node name="Long Track32" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track32" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -38.6068, 1.43051e-006, -61.7262 )
 
-[node name="Long Track33" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track33" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -1, 0, -1.49012e-007, 0, 1, 0, 1.49012e-007, 0, -1, -42.8597, 1.43051e-006, -53.8764 )
 
-[node name="Long Track13" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track13" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 4.20409, -9.53674e-007, -8.12511 )
 
-[node name="Long Track14" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track14" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 15.3964, -9.53674e-007, -14.6052 )
 
-[node name="Long Track15" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track15" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, -1, 0, 1, 0, 1, 0, -7.45058e-008, 27.5596, -9.53674e-007, -15.7262 )
 
-[node name="Long Track16" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track16" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, -1, 0, 1, 0, 1, 0, -7.45058e-008, 35.4679, -9.53674e-007, -15.7262 )
 
-[node name="Long Track17" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track17" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, -1, 0, 1, 0, 1, 0, -7.45058e-008, 43.3608, -9.53674e-007, -15.7262 )
 
-[node name="Long Track18" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track18" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, -1, 0, 1, 0, 1, 0, -7.45058e-008, 51.287, -9.53674e-007, -15.7262 )
 
-[node name="Long Track19" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track19" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -7.45058e-008, 0, -1, 0, 1, 0, 1, 0, -7.45058e-008, 59.0702, -9.53674e-007, -15.7262 )
 
-[node name="Long Track20" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track20" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 70.4744, -9.53674e-007, -10.2178 )
 
-[node name="Long Track21" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track21" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 74.4771, -9.53674e-007, -6.20245 )
 
-[node name="Long Track22" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track22" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 78.9256, -9.53674e-007, 2.90115 )
 
-[node name="Long Track2" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track2" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 17.7022 )
 
-[node name="Long Track3" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track3" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 25.6561 )
 
-[node name="Long Track4" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track4" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 33.5968 )
 
-[node name="Long Track5" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track5" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 41.5255 )
 
-[node name="Long Track7" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track7" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32013, 0, 49.1145 )
 
-[node name="Long Track6" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track6" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -4.67914, -9.53674e-007, 59.377 )
 
-[node name="Long Track8" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track8" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -5.96046e-008, 0, 1, 0, 1, 0, -1, 0, -5.96046e-008, -16.6453, -9.53674e-007, 62.3232 )
 
-[node name="Long Track9" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track9" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -5.96046e-008, 0, 1, 0, 1, 0, -1, 0, -5.96046e-008, -24.29, -9.53674e-007, 62.3232 )
 
-[node name="Long Track10" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track10" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( -5.96046e-008, 0, 1, 0, 1, 0, -1, 0, -5.96046e-008, -31.687, -9.53674e-007, 62.3232 )
 
-[node name="Long Track11" parent="Static Environment/Tracks" instance=ExtResource( 4 )]
+[node name="Long Track11" parent="Static Environment/Tracks" instance=ExtResource( 6 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -42.1345, -4.76837e-007, 56.022 )
 
-[node name="Turn Track" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -0.78475, 0, 55.4687 )
 
-[node name="Turn Track4" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track4" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.030376, 0, -3.11473 )
 
-[node name="Turn Track5" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track5" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 9.31678, 9.53674e-007, -12.3426 )
 
-[node name="Turn Track6" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track6" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 2.98023e-008, 0, -1, 0, 1, 0, 1, 0, 2.98023e-008, 21.7409, -1.90735e-006, -15.7244 )
 
-[node name="Turn Track7" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track7" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 65.598, -1.90735e-006, -14.2972 )
 
-[node name="Turn Track8" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track8" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 77.9406, -9.53674e-007, -0.810002 )
 
-[node name="Turn Track9" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track9" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, 79.2638, -9.53674e-007, 9.3948 )
 
-[node name="Turn Track2" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track2" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0, 0, 1, 0, 1, 0, -1, 0, 0, -10.7726, 9.53674e-007, 62.3254 )
 
-[node name="Turn Track10" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track10" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, -0.965926, 0.866692, -9.53674e-007, -42.9041 )
 
-[node name="Turn Track11" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track11" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, -0.866025, -2.88337, -1.90735e-006, -54.5351 )
 
-[node name="Turn Track12" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track12" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -11.952, -9.53674e-007, -63.6065 )
 
-[node name="Turn Track13" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track13" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0, 0, -1, 0, 1, 0, 1, 0, 0, -24.2912, -9.53674e-007, -66.8934 )
 
-[node name="Turn Track14" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track14" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -36.1636, -9.53674e-007, -66.2966 )
 
-[node name="Turn Track15" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track15" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, -44.3122, -9.53674e-007, -60.1025 )
 
-[node name="Turn Track3" parent="Static Environment/Tracks" instance=ExtResource( 5 )]
+[node name="Turn Track3" parent="Static Environment/Tracks" instance=ExtResource( 7 )]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, -38.0525, 9.53674e-007, 60.1033 )
 
 [node name="Peeps" type="Node" parent="."]
-editor/display_folded = true
 
-[node name="Innocent Rando" parent="Peeps" instance=ExtResource( 6 )]
+[node name="Innocent Rando" parent="Peeps" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -1.04662, 1.73841, -26.3915 )
 
-[node name="Innocent Rando5" parent="Peeps" instance=ExtResource( 6 )]
+[node name="Innocent Rando5" parent="Peeps" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -3.03892, 1.58194, -25.3574 )
 
-[node name="Innocent Rando2" parent="Peeps" instance=ExtResource( 6 )]
+[node name="Innocent Rando2" parent="Peeps" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 1.1247, 1.58194, -25.7098 )
 
-[node name="Innocent Rando3" parent="Peeps" instance=ExtResource( 6 )]
+[node name="Innocent Rando3" parent="Peeps" instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 18.1428, 1.58194, -12.976 )
 
-[node name="Trolly" type="KinematicBody" parent="."]
+[node name="Trolly Driver" parent="Peeps" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -0.0255082, 3.68805, 16.4685 )
+invert_danger = true
+
+[node name="Trolly" type="KinematicBody" parent="." groups=[
+"dangerous",
+]]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09621, 18.7781 )
 collision_mask = 5
-script = ExtResource( 7 )
+script = ExtResource( 9 )
 left_path_follow = NodePath("../Left Path/LeftPathFollow")
 right_path_follow = NodePath("../Right Path/RightPathFollow")
 is_following_left_path = true
 
 [node name="Base" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Trolly" type="MeshInstance" parent="Trolly/Base"]
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="Base2" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-008, -0.4, 0, 1, -4.37114e-008, 0, 1.09786, 4 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Trolly" type="MeshInstance" parent="Trolly/Base2"]
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="Base6" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, -1.74846e-008, -0.4, 0, 1, -4.37114e-008, 0, 1.09786, -4.46108 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Trolly" type="MeshInstance" parent="Trolly/Base6"]
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="Roof" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 0.4, 0, 5.69841, -0.445696 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 
 [node name="Roof" type="MeshInstance" parent="Trolly/Roof"]
-mesh = SubResource( 7 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 6 )
+material/0 = ExtResource( 10 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, -1.77705e-017, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, 2.38227, 1.09786, -3.3798 )
-shape = SubResource( 8 )
+shape = SubResource( 7 )
 
 [node name="Trolly2" type="MeshInstance" parent="Trolly/CollisionShape"]
 transform = Transform( 1, 0, -2.22045e-016, 0, 1, -4.16334e-017, -1.11022e-016, -6.245e-017, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="CollisionShape2" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, -1.48145e-017, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, -2.44321, 1.09786, -3.37979 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 
 [node name="Trolly3" type="MeshInstance" parent="Trolly/CollisionShape2"]
 transform = Transform( 1, -3.72529e-009, 0, 3.72529e-009, 1, -4.85723e-017, 0, -8.32667e-017, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="CollisionShape3" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, -5.62662e-017, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, -2.44321, 1.09786, -0.200491 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 
 [node name="Trolly4" type="MeshInstance" parent="Trolly/CollisionShape3"]
 transform = Transform( 1, -3.72529e-009, 0, 3.72529e-009, 1, -5.55112e-017, 0, -1.04083e-016, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="CollisionShape4" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, -1.39171e-016, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, 2.34982, 1.09786, -0.200491 )
-shape = SubResource( 11 )
+shape = SubResource( 10 )
 
 [node name="Trolly5" type="MeshInstance" parent="Trolly/CollisionShape4"]
 transform = Transform( 1, -3.72529e-009, 0, 3.72529e-009, 1, -8.32667e-017, -1.11022e-016, -1.45717e-016, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="Base3" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, 0, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, 2.38227, 1.09786, 2.50563 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Trolly" type="MeshInstance" parent="Trolly/Base3"]
 transform = Transform( 1, -3.72529e-009, 0, 3.72529e-009, 1, -1.38778e-017, -1.11022e-016, -2.08167e-017, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
 [node name="Base4" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 0.0371209, 0.999311, -4.36813e-008, 0, -1.74846e-008, -0.4, -0.999311, 0.0371209, -1.62261e-009, -2.45796, 1.09786, 2.50563 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="Trolly" type="MeshInstance" parent="Trolly/Base4"]
 transform = Transform( 1, -3.72529e-009, 0, 3.72529e-009, 1, -1.38778e-017, -1.11022e-016, -2.08167e-017, 1, 0, 0, 0 )
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+mesh = SubResource( 4 )
+material/0 = ExtResource( 10 )
 
-[node name="StaticBody" type="StaticBody" parent="Trolly" groups=[
+[node name="Dangerous Front Block" type="StaticBody" parent="Trolly" groups=[
 "dangerous",
 ]]
 editor/display_folded = true
@@ -488,103 +495,103 @@ transform = Transform( 1, 0, 0, 0, -1.74846e-008, -0.4, 0, 1, -4.37114e-008, 0, 
 collision_layer = 0
 collision_mask = 4
 
-[node name="Trolly Front" type="CollisionShape" parent="Trolly/StaticBody"]
-shape = SubResource( 4 )
+[node name="CollisionShape" type="CollisionShape" parent="Trolly/Dangerous Front Block"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0273721, 0, 0 )
+shape = SubResource( 11 )
 
-[node name="Trolly" type="MeshInstance" parent="Trolly/StaticBody/Trolly Front"]
-mesh = SubResource( 5 )
-material/0 = ExtResource( 8 )
+[node name="Trolly" type="MeshInstance" parent="Trolly/Dangerous Front Block"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0273721, 0, 0 )
+mesh = SubResource( 12 )
+material/0 = null
 
 [node name="Camera Focus Point" type="Spatial" parent="Trolly"]
 
 [node name="Pole2" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13932, 2.85989, 3.85176 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole2"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="Pole" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.22537, 2.56788, 1.07077 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="Pole7" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.13932, 2.85989, -4.55429 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole7"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="Pole3" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35658, 2.85989, 3.85176 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole3"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="Pole4" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35658, 2.85989, 1.08412 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole4"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
 [node name="Pole5" type="CollisionShape" parent="Trolly"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.35658, 2.85989, -4.5344 )
-shape = ExtResource( 9 )
+shape = ExtResource( 11 )
 
 [node name="Pole" type="MeshInstance" parent="Trolly/Pole5"]
-mesh = SubResource( 12 )
+mesh = SubResource( 13 )
 material/0 = null
 
-[node name="Trolly Driver" parent="Trolly" instance=ExtResource( 6 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -0.0255082, 2.59184, -2.30959 )
-
-[node name="Track Lever" parent="." instance=ExtResource( 10 )]
+[node name="Track Lever" parent="." instance=ExtResource( 12 )]
+editor/display_folded = false
 
 [node name="Left Path" type="Path" parent="."]
-editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0281987, -0.189789, -0.0553005 )
-curve = SubResource( 13 )
+curve = SubResource( 14 )
 
 [node name="LeftPathFollow" type="PathFollow" parent="Left Path"]
 v_offset = 1.0
 loop = false
-script = ExtResource( 11 )
+script = ExtResource( 13 )
+speed_source_key = "trolly"
 
 [node name="Right Path" type="Path" parent="."]
-editor/display_folded = true
-curve = SubResource( 14 )
+curve = SubResource( 15 )
 
 [node name="RightPathFollow" type="PathFollow" parent="Right Path"]
 v_offset = 1.0
 cubic_interp = false
 loop = false
-script = ExtResource( 11 )
+script = ExtResource( 13 )
+speed_source_key = "trolly"
 
 [node name="Real-Time Camera" type="Camera" parent="."]
 transform = Transform( -0.587913, 0.334568, -0.736493, 0, 0.91046, 0.413596, 0.808924, 0.243159, -0.535272, -7.69456, 13.2775, 0.574323 )
-environment = ExtResource( 12 )
-script = ExtResource( 13 )
+environment = ExtResource( 14 )
+script = ExtResource( 15 )
 focus_point = NodePath("../Trolly/Camera Focus Point")
 
 [node name="UnPauseDelay Camera" type="Camera" parent="."]
 transform = Transform( 0.675491, 0.327016, -0.660887, 0, 0.896279, 0.443491, 0.737368, -0.299574, 0.605429, -7.69456, 13.2775, 0.574323 )
-environment = ExtResource( 12 )
+environment = ExtResource( 14 )
 
 [node name="UnPauseDelay" type="Timer" parent="."]
 [connection signal="interacted_with" from="Track Lever" to="." method="_on_Track_Lever_interacted_with"]

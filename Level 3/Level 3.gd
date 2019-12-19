@@ -5,24 +5,21 @@ signal received_casualty
 
 onready var real_time_cam = $"Real-Time Camera"
 onready var player = $Player
-onready var trolly = $Trolly
+#onready var bullet = $Bullet
 onready var unpause_delay_timer = $UnPauseDelay
 onready var unpause_delay_cam = $"UnPauseDelay Camera"
 
-var trolly_speed = 40
-var time_limit = 5
+var bullet_speed = 50
+var time_limit = 4
 
 func _ready():
-	get_tree().call_group("trolly", "set_speed", trolly_speed)
+	#get_tree().call_group("bullet", "set_speed", bullet_speed)
 	get_tree().call_group("people", "add_collision_exception", player)
 	get_tree().call_group("people", "connect", "was_harmed", self, "_on_Person_harmed")
 
 func _process(delta):
 	if Input.is_action_just_pressed("un-pause"):
 		unpause_level()
-
-func _on_Track_Lever_interacted_with():
-	trolly.is_following_left_path = !trolly.is_following_left_path
 
 func _on_Person_harmed():
 	emit_signal("received_casualty")

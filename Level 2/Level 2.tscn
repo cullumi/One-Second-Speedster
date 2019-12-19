@@ -1,129 +1,289 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://default_env.tres" type="Environment" id=1]
+[ext_resource path="res://Level 2/Level 2.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Scenes/Sun.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Materials/ground_brown.tres" type="Material" id=4]
+[ext_resource path="res://Assets/Meshes/Detailed Building.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Scenes/Innocent Rando.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Level 2/Bullet.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Scenes/Force Arrow.tscn" type="PackedScene" id=8]
+[ext_resource path="res://default_env.tres" type="Environment" id=9]
+[ext_resource path="res://Assets/Scripts/Real-Time Camera.gd" type="Script" id=10]
+[ext_resource path="res://Assets/Scenes/UnPauseDelay.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
+size = Vector2( 300, 200 )
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_color = Color( 0.317647, 0.270588, 0.270588, 1 )
+[sub_resource type="ConcavePolygonShape" id=12]
+data = PoolVector3Array( 150, 0, 100, -150, 0, 100, 150, 0, -100, -150, 0, 100, -150, 0, -100, 150, 0, -100 )
 
-[sub_resource type="ConcavePolygonShape" id=3]
-data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+[sub_resource type="PhysicsMaterial" id=8]
+bounce = 100.0
 
-[sub_resource type="CapsuleShape" id=4]
-
-[sub_resource type="CapsuleMesh" id=5]
-
-[sub_resource type="BoxShape" id=6]
-extents = Vector3( 2.5, 5, 10 )
-
-[sub_resource type="CubeMesh" id=7]
-size = Vector3( 5, 10, 20 )
-
-[sub_resource type="SpatialMaterial" id=8]
-albedo_color = Color( 0.623529, 0.623529, 0.623529, 1 )
-
-[sub_resource type="SpatialMaterial" id=9]
-albedo_color = Color( 0.623529, 0.623529, 0.623529, 1 )
-
-[sub_resource type="SpatialMaterial" id=10]
-albedo_color = Color( 0.623529, 0.623529, 0.623529, 1 )
-
-[sub_resource type="CylinderShape" id=11]
+[sub_resource type="CylinderShape" id=9]
 radius = 0.1
 height = 0.5
 
-[sub_resource type="CylinderMesh" id=12]
+[sub_resource type="CylinderMesh" id=10]
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.5
 
-[sub_resource type="SpatialMaterial" id=13]
+[sub_resource type="SpatialMaterial" id=11]
 albedo_color = Color( 1, 0, 0, 1 )
 
-[node name="Spatial" type="Spatial"]
+[node name="Level 2" type="Spatial"]
+script = ExtResource( 1 )
 
-[node name="Ground" type="MeshInstance" parent="."]
-transform = Transform( 12.5, 0, 0, 0, 10, 0, 0, 0, 12.5, 2.5, 0, 2.5 )
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 0.981227, 0, -0.192856, 0, 1, 0, 0.192856, 0, 0.981227, -0.91715, 1.96193, 22.9243 )
+
+[node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
+transform = Transform( -0.260258, -0.959373, -0.108943, 0.249712, -0.175872, 0.952214, -0.93269, 0.220617, 0.285339, 0, 19.7036, 0 )
+
+[node name="Static Environment" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody" parent="Static Environment"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5 )
+collision_mask = 5
+
+[node name="Ground" type="MeshInstance" parent="Static Environment/Ground"]
 mesh = SubResource( 1 )
-material/0 = SubResource( 2 )
+material/0 = ExtResource( 4 )
 
-[node name="StaticBody" type="StaticBody" parent="Ground"]
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Ground"]
+shape = SubResource( 12 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
-shape = SubResource( 3 )
+[node name="Buildings" type="Node" parent="Static Environment"]
+editor/display_folded = true
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 0.978148, 0, -0.207912, 0, 1, 0, 0.207912, 0, 0.978148, -1.35521, 2, 8.09643 )
-environment = ExtResource( 1 )
+[node name="Detailed Building" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -15.1517, -0.193322, 9.90638 )
 
-[node name="Gunman" type="RigidBody" parent="."]
+[node name="Detailed Building2" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -10.1649, -4.60321, -5.55851 )
+
+[node name="Detailed Building3" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 5.29433, -4.03341, -10.055 )
+
+[node name="Detailed Building4" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 19.1036, -0.22848, 7.1111 )
+
+[node name="Detailed Building6" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 19.1036, -0.22848, 27.974 )
+
+[node name="Detailed Building9" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 19.1036, -0.22848, 38.3437 )
+
+[node name="Detailed Building10" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 19.1036, -0.22848, 65.3766 )
+
+[node name="Detailed Building25" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 100.731, -0.22848, 65.3766 )
+
+[node name="Detailed Building32" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -63.1459, -0.22848, 65.3766 )
+
+[node name="Detailed Building39" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 60.8285, -0.22848, 38.309 )
+
+[node name="Detailed Building46" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, -97.1715, -0.22848, 39.309 )
+
+[node name="Detailed Building52" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 35.8285, -0.22848, -12.9819 )
+
+[node name="Detailed Building59" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, -3.57746e-008, 0, 1.5, 0, 3.57746e-008, 0, -1.5, 90.536, -0.22848, 8.63014 )
+
+[node name="Detailed Building11" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -1.30313, -0.22848, 65.3766 )
+
+[node name="Detailed Building22" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 80.3241, -0.22848, 65.3766 )
+
+[node name="Detailed Building31" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -83.5527, -0.22848, 65.3766 )
+
+[node name="Detailed Building34" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 81.2352, -0.22848, 38.309 )
+
+[node name="Detailed Building42" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, -76.7648, -0.22848, 39.309 )
+
+[node name="Detailed Building51" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 56.2352, -0.22848, -12.9819 )
+
+[node name="Detailed Building56" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, -3.57746e-008, 0, 1.5, 0, 3.57746e-008, 0, -1.5, 70.1293, -0.22848, 8.63014 )
+
+[node name="Detailed Building12" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -21.66, -0.22848, 65.3766 )
+
+[node name="Detailed Building24" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, 59.9672, -0.22848, 65.3766 )
+
+[node name="Detailed Building29" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -103.91, -0.22848, 65.3766 )
+
+[node name="Detailed Building37" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 101.592, -0.22848, 38.309 )
+
+[node name="Detailed Building44" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, -56.408, -0.22848, 39.309 )
+
+[node name="Detailed Building48" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53596e-008, 0, 1.5, 0, 9.53596e-008, 0, 1.5, 76.592, -0.22848, -12.9819 )
+
+[node name="Detailed Building61" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, -3.57746e-008, 0, 1.5, 0, 3.57746e-008, 0, -1.5, 49.7725, -0.22848, 8.63015 )
+
+[node name="Detailed Building14" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -25.6964, -0.22848, 40.4132 )
+
+[node name="Detailed Building15" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -2.44381e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, -2.44381e-007, 34.8336, -0.22848, 33.2842 )
+
+[node name="Detailed Building16" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 34.8335, -0.22848, 70.467 )
+
+[node name="Detailed Building23" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 116.461, -0.22848, 70.467 )
+
+[node name="Detailed Building28" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -47.416, -0.22848, 70.467 )
+
+[node name="Detailed Building36" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 45.0985, -0.22848, 33.2186 )
+
+[node name="Detailed Building43" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, -112.901, -0.22848, 34.2186 )
+
+[node name="Detailed Building49" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 20.0985, -0.22848, -18.0723 )
+
+[node name="Detailed Building58" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.49021e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.49021e-007, 106.266, -0.22848, 13.7205 )
+
+[node name="Detailed Building17" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 10.9496, -0.22848, 69.3721 )
+
+[node name="Detailed Building20" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 92.5768, -0.22848, 69.3721 )
+
+[node name="Detailed Building33" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -71.2999, -0.22848, 69.3721 )
+
+[node name="Detailed Building40" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 68.9825, -0.22848, 34.3135 )
+
+[node name="Detailed Building47" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, -89.0175, -0.22848, 35.3135 )
+
+[node name="Detailed Building54" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 43.9825, -0.22848, -16.9774 )
+
+[node name="Detailed Building60" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.49021e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.49021e-007, 82.382, -0.22848, 12.6257 )
+
+[node name="Detailed Building18" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -9.08779, -0.22848, 69.3721 )
+
+[node name="Detailed Building21" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 72.5394, -0.22848, 69.3721 )
+
+[node name="Detailed Building30" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -91.3373, -0.22848, 69.3721 )
+
+[node name="Detailed Building38" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 89.0198, -0.22848, 34.3135 )
+
+[node name="Detailed Building45" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, -68.9802, -0.22848, 35.3135 )
+
+[node name="Detailed Building50" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 64.0198, -0.22848, -16.9774 )
+
+[node name="Detailed Building55" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.49021e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.49021e-007, 62.3447, -0.22848, 12.6257 )
+
+[node name="Detailed Building19" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -36.9936, -0.22848, 69.3721 )
+
+[node name="Detailed Building26" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, 44.6336, -0.22848, 69.3721 )
+
+[node name="Detailed Building27" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.13247e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, 1.13247e-007, -119.243, -0.22848, 69.3721 )
+
+[node name="Detailed Building35" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 116.926, -0.22848, 34.3135 )
+
+[node name="Detailed Building41" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, -41.0744, -0.22848, 35.3135 )
+
+[node name="Detailed Building53" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.78873e-008, 0, -1.5, 0, 1.5, 0, 1.5, 0, 1.78873e-008, 91.9256, -0.22848, -16.9774 )
+
+[node name="Detailed Building57" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.49021e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -1.49021e-007, 34.4389, -0.22848, 12.6257 )
+
+[node name="Detailed Building13" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -21.66, -0.22848, 65.3766 )
+
+[node name="Detailed Building7" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -1.5, 0, 2.26494e-007, 0, 1.5, 0, -2.26494e-007, 0, -1.5, -15.3561, -0.22848, 20.3077 )
+
+[node name="Detailed Building8" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( -2.44381e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, -2.44381e-007, -9.92172, -0.22848, 35.5539 )
+
+[node name="Detailed Building5" parent="Static Environment/Buildings" instance=ExtResource( 5 )]
+transform = Transform( 1.5, 0, -9.53595e-008, 0, 1.5, 0, 9.53595e-008, 0, 1.5, 19.3302, -0.228482, 17.6234 )
+
+[node name="Peeps" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="Innocent Rando" parent="Peeps" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 3.78397, 1.5, 3.09565 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Gunman"]
-shape = SubResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Gunman"]
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="Gunman2" type="RigidBody" parent="."]
+[node name="Innocent Rando2" parent="Peeps" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 4.012, 1.5, -1.55336 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Gunman2"]
-shape = SubResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Gunman2"]
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="Civilian" type="RigidBody" parent="."]
+[node name="Innocent Rando3" parent="Peeps" instance=ExtResource( 6 )]
 transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -1.44227, 1.5, -1.84074 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Civilian"]
-shape = SubResource( 4 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Civilian"]
-mesh = SubResource( 5 )
-material/0 = null
-
-[node name="StaticBody" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.5, 5, 5 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
-shape = SubResource( 6 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 8 )
-
-[node name="StaticBody2" type="StaticBody" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, 5, 0 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody2"]
-shape = SubResource( 6 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody2"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 9 )
-
-[node name="StaticBody3" type="StaticBody" parent="."]
-transform = Transform( -4.37114e-008, 0, 1, 0, 1, 0, -1, 0, -4.37114e-008, 0, 5, -7.5 )
-
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody3"]
-shape = SubResource( 6 )
-
-[node name="MeshInstance" type="MeshInstance" parent="StaticBody3"]
-mesh = SubResource( 7 )
-material/0 = SubResource( 10 )
-
-[node name="RigidBody" type="RigidBody" parent="."]
+[node name="Bullet" type="RigidBody" parent="." groups=[
+"dangerous",
+]]
+editor/display_folded = true
 transform = Transform( -3.09086e-008, -0.707107, -0.707107, 1, -4.37114e-008, 0, -3.09086e-008, -0.707107, 0.707107, 1.27024, 1.67069, 0.877481 )
+collision_layer = 4
+collision_mask = 4
+physics_material_override = SubResource( 8 )
 gravity_scale = 0.0
+linear_damp = 0.0
+script = ExtResource( 7 )
 
-[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
-shape = SubResource( 11 )
+[node name="CollisionShape" type="CollisionShape" parent="Bullet"]
+shape = SubResource( 9 )
 
-[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
-mesh = SubResource( 12 )
-material/0 = SubResource( 13 )
+[node name="MeshInstance" type="MeshInstance" parent="Bullet"]
+mesh = SubResource( 10 )
+material/0 = SubResource( 11 )
+
+[node name="Force Arrow" parent="Bullet" instance=ExtResource( 8 )]
+
+[node name="Real-Time Camera" type="Camera" parent="."]
+transform = Transform( 0.978148, 0.082378, -0.190896, 0, 0.918157, 0.396216, 0.207912, -0.387558, 0.898093, -0.428584, 5.90742, 8.09643 )
+environment = ExtResource( 9 )
+script = ExtResource( 10 )
+focus_point = NodePath("../Bullet")
+
+[node name="UnPauseDelay Camera" type="Camera" parent="."]
+transform = Transform( 0.978148, 0.082378, -0.190896, 0, 0.918157, 0.396216, 0.207912, -0.387558, 0.898093, -0.428584, 5.90742, 8.09643 )
+environment = ExtResource( 9 )
+
+[node name="UnPauseDelay" parent="." instance=ExtResource( 11 )]
+[connection signal="timeout" from="UnPauseDelay" to="." method="_on_UnPauseDelay_timeout"]
