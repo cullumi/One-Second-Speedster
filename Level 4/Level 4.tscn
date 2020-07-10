@@ -1,124 +1,1103 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Level 4/Level 4.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Materials/ground_brown.tres" type="Material" id=3]
+[ext_resource path="res://Assets/Meshes/Detailed Building.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Scenes/Sun.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Scripts/Real-Time Camera.gd" type="Script" id=6]
+[ext_resource path="res://Assets/Scripts/Bullet.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Materials/trolly_spatmat.tres" type="Material" id=8]
+[ext_resource path="res://Assets/Scenes/Force Arrow.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Scenes/Innocent Rando.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Scenes/Particle Alley.tscn" type="PackedScene" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
+size = Vector2( 1200, 1200 )
 
 [sub_resource type="ConcavePolygonShape" id=2]
-data = PoolVector3Array( 1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1 )
+data = PoolVector3Array( 600, 0, 600, -600, 0, 600, 600, 0, -600, -600, 0, 600, -600, 0, -600, 600, 0, -600 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 2, 1, 3 )
-
-[sub_resource type="CubeMesh" id=4]
-size = Vector3( 4, 2, 6 )
-
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 2, 2, 7.5 )
-
-[sub_resource type="CubeMesh" id=6]
-size = Vector3( 4, 4, 15 )
-
-[sub_resource type="CapsuleShape" id=7]
-
-[sub_resource type="CapsuleMesh" id=8]
-
-[sub_resource type="BoxShape" id=9]
 extents = Vector3( 10, 7.5, 10 )
 
-[sub_resource type="CubeMesh" id=10]
+[sub_resource type="CubeMesh" id=4]
 size = Vector3( 20, 15, 20 )
 
-[node name="Spatial" type="Spatial"]
+[sub_resource type="PhysicsMaterial" id=5]
+friction = 0.25
 
-[node name="Ground" type="MeshInstance" parent="."]
-editor/display_folded = true
-transform = Transform( 30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0 )
+[sub_resource type="CubeMesh" id=6]
+size = Vector3( 4, 6, 2 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( -2, 3, 1, 2, 3, -1, 2, 3, 1, -2, 3, -1, -2, -3, 1, 2, -3, -1, 2, -3, 1, -2, -3, -1, 2, 3, 1, -2, 3, -1, 2, 3, -1, -2, 3, 1, 2, -3, 1, -2, -3, -1, 2, -3, -1, -2, -3, 1, 2, 3, 1, -2, -3, 1, -2, 3, 1, 2, -3, 1, 2, 3, -1, -2, -3, -1, -2, 3, -1, 2, -3, -1 )
+
+[sub_resource type="PhysicsMaterial" id=8]
+friction = 0.25
+
+[sub_resource type="CubeMesh" id=9]
+size = Vector3( 4, 15, 4 )
+
+[sub_resource type="ConvexPolygonShape" id=10]
+points = PoolVector3Array( -2, 7.5, 2, 2, 7.5, -2, 2, 7.5, 2, -2, 7.5, -2, -2, -7.5, 2, 2, -7.5, -2, 2, -7.5, 2, -2, -7.5, -2, 2, 7.5, 2, -2, 7.5, -2, 2, 7.5, -2, -2, 7.5, 2, 2, -7.5, 2, -2, -7.5, -2, 2, -7.5, -2, -2, -7.5, 2, 2, 7.5, 2, -2, -7.5, 2, -2, 7.5, 2, 2, -7.5, 2, 2, 7.5, -2, -2, -7.5, -2, -2, 7.5, -2, 2, -7.5, -2 )
+
+[node name="Level 4" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.68703, 23.6232 )
+
+[node name="Static Environment" type="Node" parent="."]
+
+[node name="Ground" type="StaticBody" parent="Static Environment"]
+collision_mask = 5
+
+[node name="Ground" type="MeshInstance" parent="Static Environment/Ground"]
 mesh = SubResource( 1 )
-material/0 = null
+material/0 = ExtResource( 3 )
 
-[node name="StaticBody" type="StaticBody" parent="Ground"]
-editor/display_folded = true
-
-[node name="CollisionShape" type="CollisionShape" parent="Ground/StaticBody"]
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Ground"]
 shape = SubResource( 2 )
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( -0.445192, 0, 0.895435, 0, 1, 0, -0.895435, 0, -0.445192, 14.9179, 2, -5.791 )
-
-[node name="Car" type="RigidBody" parent="."]
+[node name="Old Buildings" type="Node" parent="Static Environment"]
 editor/display_folded = true
-transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -8.64408, 1.5, 3.06898 )
 
-[node name="CollisionShape" type="CollisionShape" parent="Car"]
+[node name="Building" type="StaticBody" parent="Static Environment/Old Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 7.5, 20 )
+collision_mask = 5
+
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Old Buildings/Building"]
 shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Car"]
+[node name="MeshInstance" type="MeshInstance" parent="Static Environment/Old Buildings/Building"]
 mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Bus" type="RigidBody" parent="."]
-editor/display_folded = true
-transform = Transform( 0.993411, 0, 0.114608, 0, 1, 0, -0.114608, 0, 0.993411, -1.8913, 2, -10.3482 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Bus"]
-shape = SubResource( 5 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Bus"]
-mesh = SubResource( 6 )
-material/0 = null
-
-[node name="Civilian" type="RigidBody" parent="."]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 8.5962, 1.5, 2.93815 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Civilian"]
-shape = SubResource( 7 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Civilian"]
-mesh = SubResource( 8 )
-material/0 = null
-
-[node name="Building" type="StaticBody" parent="."]
-editor/display_folded = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 7.5, 20 )
-
-[node name="CollisionShape" type="CollisionShape" parent="Building"]
-shape = SubResource( 9 )
-
-[node name="MeshInstance" type="MeshInstance" parent="Building"]
-mesh = SubResource( 10 )
-material/0 = null
-
-[node name="Building2" type="StaticBody" parent="."]
+[node name="Building2" type="StaticBody" parent="Static Environment/Old Buildings"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 7.5, 20 )
+collision_mask = 5
 
-[node name="CollisionShape" type="CollisionShape" parent="Building2"]
-shape = SubResource( 9 )
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Old Buildings/Building2"]
+shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Building2"]
-mesh = SubResource( 10 )
+[node name="MeshInstance" type="MeshInstance" parent="Static Environment/Old Buildings/Building2"]
+mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Building3" type="StaticBody" parent="."]
+[node name="Building3" type="StaticBody" parent="Static Environment/Old Buildings"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 7.5, -20 )
+collision_mask = 5
 
-[node name="CollisionShape" type="CollisionShape" parent="Building3"]
-shape = SubResource( 9 )
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Old Buildings/Building3"]
+shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Building3"]
-mesh = SubResource( 10 )
+[node name="MeshInstance" type="MeshInstance" parent="Static Environment/Old Buildings/Building3"]
+mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Building4" type="StaticBody" parent="."]
+[node name="Building4" type="StaticBody" parent="Static Environment/Old Buildings"]
 editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 7.5, -20 )
+collision_mask = 5
 
-[node name="CollisionShape" type="CollisionShape" parent="Building4"]
-shape = SubResource( 9 )
+[node name="CollisionShape" type="CollisionShape" parent="Static Environment/Old Buildings/Building4"]
+shape = SubResource( 3 )
 
-[node name="MeshInstance" type="MeshInstance" parent="Building4"]
-mesh = SubResource( 10 )
+[node name="MeshInstance" type="MeshInstance" parent="Static Environment/Old Buildings/Building4"]
+mesh = SubResource( 4 )
 material/0 = null
 
-[node name="Node" type="Node" parent="."]
+[node name="New Buildings" type="Node" parent="Static Environment"]
+editor/display_folded = true
+
+[node name="Corner" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+
+[node name="Detailed Building" parent="Static Environment/New Buildings/Corner" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, 20.0262, 0, 14.888 )
+
+[node name="Detailed Building2" parent="Static Environment/New Buildings/Corner" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -2.26494e-007, 0, 1.5, 0, 2.26494e-007, 0, -1.5, 20.0262, 0, 25.2775 )
+
+[node name="Corner2" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+
+[node name="Detailed Building3" parent="Static Environment/New Buildings/Corner2" instance=ExtResource( 4 )]
+transform = Transform( 2.92061e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 2.92061e-007, 15.1017, 0, -20.1864 )
+
+[node name="Detailed Building4" parent="Static Environment/New Buildings/Corner2" instance=ExtResource( 4 )]
+transform = Transform( 2.92061e-007, 0, -1.5, 0, 1.5, 0, 1.5, 0, 2.92061e-007, 25.1017, 0, -20.1864 )
+
+[node name="Corner3" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+
+[node name="Detailed Building5" parent="Static Environment/New Buildings/Corner3" instance=ExtResource( 4 )]
+transform = Transform( 1.5, 0, 3.57628e-007, 0, 1.5, 0, -3.57628e-007, 0, 1.5, -20.1456, 0, -14.6428 )
+
+[node name="Detailed Building6" parent="Static Environment/New Buildings/Corner3" instance=ExtResource( 4 )]
+transform = Transform( 1.5, 0, 3.57628e-007, 0, 1.5, 0, -3.57628e-007, 0, 1.5, -20.1456, 0, -24.6428 )
+
+[node name="Corner4" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+
+[node name="Detailed Building7" parent="Static Environment/New Buildings/Corner4" instance=ExtResource( 4 )]
+transform = Transform( -4.23195e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -4.23195e-007, -14.7679, 0, 20.112 )
+
+[node name="Detailed Building8" parent="Static Environment/New Buildings/Corner4" instance=ExtResource( 4 )]
+transform = Transform( -4.23195e-007, 0, 1.5, 0, 1.5, 0, -1.5, 0, -4.23195e-007, -25.0999, 0, 20.112 )
+
+[node name="Street of Buildings" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+
+[node name="Stretch of Buildings" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117931 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings2" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.6381 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -123.011, 0, 0 )
+
+[node name="Stretch of Buildings" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117931 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings2" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.6381 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings5/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings6" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -245.918, 0, 0 )
+
+[node name="Stretch of Buildings" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117931 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings2" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.6381 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings6/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings7" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -368.983, 0, 0 )
+
+[node name="Stretch of Buildings" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.117931 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings2" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -29.6381 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings/Street of Buildings7/Stretch of Buildings2" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings2" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0, 0 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01894, 0, -0.071887 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -30.129 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -123.005, 0, 5.37672e-006 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01894, 0, -0.071887 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -30.129 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings6" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -245.962, 0, 1.07514e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01894, 0, -0.071887 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -30.129 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings7" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -368.838, 0, 1.61224e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01894, 0, -0.071887 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -30.129 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings2/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings3" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+transform = Transform( -1, 0, 1.50996e-007, 0, 1, 0, -1.50996e-007, 0, -1, 0, 0, 0 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -123.072, 0, 1.85834e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings6" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -245.935, 0, 3.71352e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings7" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -369.172, 0, 5.57434e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings3/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings4" type="Spatial" parent="Static Environment/New Buildings"]
+editor/display_folded = true
+transform = Transform( 1.94707e-007, 0, 1, 0, 1, 0, -1, 0, 1.94707e-007, 0, 0, 0 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings5/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings6" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -122.945, 0, 2.39383e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings6/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings7" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -246.127, 0, 4.79226e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings7/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Street of Buildings8" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -369.228, 0, 7.18914e-005 )
+
+[node name="Stretch of Buildings4" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.437878, 0, -0.00335885 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings4" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="Stretch of Buildings5" type="Spatial" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8"]
+editor/display_folded = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.447357, 0, -29.8744 )
+
+[node name="Detailed Building9" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -41.0314, 0, 15.0777 )
+
+[node name="Detailed Building10" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -61.5439, 0, 15.0777 )
+
+[node name="Detailed Building11" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -82.3326, 0, 15.0777 )
+
+[node name="Detailed Building12" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -103.121, 0, 15.0777 )
+
+[node name="Detailed Building13" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -123.289, 0, 15.0777 )
+
+[node name="Detailed Building14" parent="Static Environment/New Buildings/Street of Buildings4/Street of Buildings8/Stretch of Buildings5" instance=ExtResource( 4 )]
+transform = Transform( -1.5, 0, -5.84122e-007, 0, 1.5, 0, 5.84122e-007, 0, -1.5, -143.603, 0, 15.0777 )
+
+[node name="DirectionalLight" parent="Static Environment" instance=ExtResource( 5 )]
+transform = Transform( 0.814253, -0.552281, -0.178823, 0.373922, 0.263348, 0.889286, -0.444043, -0.79097, 0.420942, 0, 19.7036, 0 )
+
+[node name="Real-Time Camera" type="Camera" parent="."]
+transform = Transform( -0.772596, -0.411023, 0.483897, 0, 0.762165, 0.647383, -0.634899, 0.500165, -0.588845, 9.85021, 13.208, -9.55089 )
+script = ExtResource( 6 )
+focus_point = NodePath("../People/Innocent Rando")
+
+[node name="UnPauseDelay Camera" type="Camera" parent="."]
+transform = Transform( -0.772596, -0.411023, 0.483897, 0, 0.762165, 0.647383, -0.634899, 0.500165, -0.588845, 9.85021, 13.208, -9.55089 )
+
+[node name="Car" type="RigidBody" parent="." groups=[
+"dangerous",
+]]
+editor/display_folded = true
+transform = Transform( -4.37114e-008, -1, -4.37114e-008, 3.82137e-015, 4.37114e-008, -1, 1, -4.37114e-008, 1.91069e-015, -8.64408, 1.47943, 3.06898 )
+collision_layer = 4
+collision_mask = 4
+mass = 3.0
+physics_material_override = SubResource( 5 )
+script = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Car"]
+mesh = SubResource( 6 )
+material/0 = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Car"]
+shape = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Force Arrow" parent="Car" instance=ExtResource( 9 )]
+
+[node name="Car2" type="RigidBody" parent="." groups=[
+"dangerous",
+]]
+editor/display_folded = true
+transform = Transform( -4.37114e-008, -1, -4.37114e-008, 3.82137e-015, 4.37114e-008, -1, 1, -4.37114e-008, 1.91069e-015, -17.5776, 1.47943, 3.06898 )
+collision_layer = 4
+collision_mask = 4
+mass = 3.0
+physics_material_override = SubResource( 5 )
+script = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Car2"]
+mesh = SubResource( 6 )
+material/0 = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Car2"]
+shape = SubResource( 7 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Force Arrow" parent="Car2" instance=ExtResource( 9 )]
+
+[node name="Bus" type="RigidBody" parent="." groups=[
+"dangerous",
+]]
+editor/display_folded = true
+transform = Transform( -0.993411, -0.114608, -5.00966e-009, 3.82137e-015, 4.37114e-008, -1, 0.114608, -0.993411, -4.34234e-008, -1.8913, 2.04227, -10.3482 )
+collision_layer = 4
+collision_mask = 4
+mass = 10.0
+physics_material_override = SubResource( 8 )
+script = ExtResource( 7 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Bus"]
+mesh = SubResource( 9 )
+material/0 = ExtResource( 8 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape" type="CollisionShape" parent="Bus"]
+shape = SubResource( 10 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Force Arrow" parent="Bus" instance=ExtResource( 9 )]
+
+[node name="People" type="Node" parent="."]
+editor/display_folded = true
+
+[node name="Innocent Rando" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 8.5962, 1.52567, 2.93815 )
+starts_stationary = true
+
+[node name="Innocent Rando2" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -4.61541, 1.52567, 9.7473 )
+starts_stationary = true
+
+[node name="Innocent Rando3" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 7.2229, 1.52567, -9.72699 )
+starts_stationary = true
+
+[node name="Innocent Rando4" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, -8.44124, 1.51266, -5.08588 )
+starts_stationary = true
+
+[node name="Innocent Rando5" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 15.3949, 1.52042, 3.3839 )
+starts_stationary = true
+
+[node name="Innocent Rando6" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 5.56035, 1.49865, 20.426 )
+starts_stationary = true
+
+[node name="Innocent Rando7" parent="People" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-008, -1, 0, 1, -4.37114e-008, 3.85869, 1.49865, 20.426 )
+starts_stationary = true
+
+[node name="UnPauseDelay" type="Timer" parent="."]
+
+[node name="Particle Alley" parent="." instance=ExtResource( 11 )]
+transform = Transform( -4.37114e-008, 1, -4.37114e-008, 0, -4.37114e-008, -1, -1, -4.37114e-008, 1.91069e-015, 3.26714e-007, 1.628, -237.579 )
+
+[node name="Particle Alley2" parent="." instance=ExtResource( 11 )]
+transform = Transform( -1, -8.74228e-008, 3.82138e-015, 0, -4.37114e-008, -1, 8.74228e-008, -1, 4.37114e-008, -237.579, 1.628, 1.00582e-005 )
+
+[node name="Particle Alley3" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1.31134e-007, -1, 4.37114e-008, 0, -4.37114e-008, -1, 1, 1.31134e-007, -5.73206e-015, 2.04431e-005, 1.628, 237.579 )
+
+[node name="Particle Alley4" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 2.13163e-014, -4.02341e-021, 0, -4.37114e-008, -1, -2.13163e-014, 1, -4.37114e-008, 237.579, 1.628, 1.07116e-005 )
+
+[node name="Map Pivot" type="Spatial" parent="."]
+transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, 0, 0, 0 )
+[connection signal="timeout" from="UnPauseDelay" to="." method="_on_UnPauseDelay_timeout"]

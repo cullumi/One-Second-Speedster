@@ -41,8 +41,10 @@ transform = Transform( -4.37114e-008, 0, -1, 0, 1, 0, 1, 0, -4.37114e-008, -6.01
 [node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
 
 [node name="Static Environment" type="Node" parent="."]
+editor/display_folded = true
 
 [node name="Ground" type="StaticBody" parent="Static Environment"]
+editor/display_folded = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0 )
 collision_layer = 5
 

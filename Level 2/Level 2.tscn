@@ -6,7 +6,7 @@
 [ext_resource path="res://Assets/Materials/ground_brown.tres" type="Material" id=4]
 [ext_resource path="res://Assets/Meshes/Detailed Building.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Scenes/Innocent Rando.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Level 2/Bullet.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Scripts/Bullet.gd" type="Script" id=7]
 [ext_resource path="res://Assets/Scenes/Force Arrow.tscn" type="PackedScene" id=8]
 [ext_resource path="res://default_env.tres" type="Environment" id=9]
 [ext_resource path="res://Assets/Scripts/Real-Time Camera.gd" type="Script" id=10]
@@ -15,22 +15,22 @@
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 300, 200 )
 
-[sub_resource type="ConcavePolygonShape" id=12]
+[sub_resource type="ConcavePolygonShape" id=2]
 data = PoolVector3Array( 150, 0, 100, -150, 0, 100, 150, 0, -100, -150, 0, 100, -150, 0, -100, 150, 0, -100 )
 
-[sub_resource type="PhysicsMaterial" id=8]
+[sub_resource type="PhysicsMaterial" id=3]
 bounce = 100.0
 
-[sub_resource type="CylinderShape" id=9]
+[sub_resource type="CylinderShape" id=4]
 radius = 0.1
 height = 0.5
 
-[sub_resource type="CylinderMesh" id=10]
+[sub_resource type="CylinderMesh" id=5]
 top_radius = 0.1
 bottom_radius = 0.1
 height = 0.5
 
-[sub_resource type="SpatialMaterial" id=11]
+[sub_resource type="SpatialMaterial" id=6]
 albedo_color = Color( 1, 0, 0, 1 )
 
 [node name="Level 2" type="Spatial"]
@@ -54,7 +54,7 @@ mesh = SubResource( 1 )
 material/0 = ExtResource( 4 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Static Environment/Ground"]
-shape = SubResource( 12 )
+shape = SubResource( 2 )
 
 [node name="Buildings" type="Node" parent="Static Environment"]
 editor/display_folded = true
@@ -261,17 +261,18 @@ editor/display_folded = true
 transform = Transform( -3.09086e-008, -0.707107, -0.707107, 1, -4.37114e-008, 0, -3.09086e-008, -0.707107, 0.707107, 1.27024, 1.67069, 0.877481 )
 collision_layer = 4
 collision_mask = 4
-physics_material_override = SubResource( 8 )
+mass = 0.5
+physics_material_override = SubResource( 3 )
 gravity_scale = 0.0
 linear_damp = 0.0
 script = ExtResource( 7 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Bullet"]
-shape = SubResource( 9 )
+shape = SubResource( 4 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Bullet"]
-mesh = SubResource( 10 )
-material/0 = SubResource( 11 )
+mesh = SubResource( 5 )
+material/0 = SubResource( 6 )
 
 [node name="Force Arrow" parent="Bullet" instance=ExtResource( 8 )]
 
